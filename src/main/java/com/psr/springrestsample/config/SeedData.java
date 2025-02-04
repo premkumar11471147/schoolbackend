@@ -1,15 +1,17 @@
 package com.psr.springrestsample.config;
 
+import com.psr.springrestsample.sms.model.TeacherPersonalProfile;
+import com.psr.springrestsample.sms.model.TeacherProfile;
+import com.psr.springrestsample.sms.service.TeacherProfileService;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import com.psr.springrestsample.model.Account;
 import com.psr.springrestsample.service.AccountService;
-import com.psr.springrestsample.sms.model.Student;
-import com.psr.springrestsample.sms.model.Teachers;
-import com.psr.springrestsample.sms.service.StudentService;
-import com.psr.springrestsample.sms.service.TeacherService;
+import org.springframework.stereotype.Service;
+
 
 @Component
 public class SeedData  implements CommandLineRunner{
@@ -20,16 +22,15 @@ public class SeedData  implements CommandLineRunner{
     private AccountService accountService;
 
     @Autowired
-    private TeacherService teacherService;
-
-    @Autowired
-    private StudentService studentService;
+    private TeacherProfileService teacherProfileService;
 
     @Override
     public void run(String... args) throws Exception {
 
         Account account1 = new Account();
         Account account2 = new Account();
+
+
 
         account1.setEmail("user@user.com");
         account1.setPassword("pass987");
@@ -46,40 +47,30 @@ public class SeedData  implements CommandLineRunner{
         java.util.Date utilDate = new java.util.Date(); // Current date and time
         java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
+/*
         for(int i =0; i< 10; i++) {
-        Teachers teacher = new Teachers();
-        teacher.setTeaname("Teacher1"+i);
-        teacher.setTeaemail("Teacher"+i+"@gmail.com");
-        teacher.setteacourse("Teacher"+i+"Course");
-        teacher.setTeaaddress("road"+i+",hyd");
-        teacher.setteaphone("9876543210"+i+"");
-        teacher.setJndate(sqlDate);
-        teacher.setDeptm("maths"+i+"");
-        teacher.setSui("sui"+i+"");
-        teacher.setGender("MALE");
-        teacher.setSection("A"+i+"");
-        teacher.setClasse("Class"+i+"");
-        teacherService.saveTeacher(teacher);
-    }
+            TeacherProfile teacher = new TeacherProfile();
+            teacher.setSchoolId(100L);
+            teacher.setTeacherId(1L);
+            teacher.setFirstName("Teacher" + i + "@gmail.com");
+            teacher.setLastName("Teacher" + i + "Course");
+            teacher.setTeachingClasses("4,5,6" + i + ",hyd");
+            teacher.setClassTeacher(true);
 
-        for(int i= 0; i< 10; i++) {
-            Student student =  new Student();
-            student.setFullname("Fullname"+i+"");
-            student.setEmail("student"+i+"@gmail.com");
-            student.setPhoneno("123456789"+i+"");
-            student.setSui("STUDsui"+i+"");
-            student.setDob(sqlDate.toString());
-            student.setPob("pob"+i+"");
-            student.setGender("FEMALE");
-            student.setAddress("road"+i+",hyd");
-            student.setSection("A"+i+"");
-            student.setClasse("Class"+i+"");
-            studentService.saveStudent(student);
-        }
+            TeacherPersonalProfile teacherPersonalProfile = new TeacherPersonalProfile();
 
 
+            teacherPersonalProfile.setTeacherId(teacher.getTeacherId());
+            teacherPersonalProfile.setDateOfBirth(sqlDate.toString());
+            teacherPersonalProfile.setGender("MALE");
+            teacherPersonalProfile.setGuardianName("Suresh" + i );
+            teacherPersonalProfile.setPhoneNumber("900842523" + i );
+            teacherPersonalProfile.setAlternateNumber("9014064845" + i );
+            teacherPersonalProfile.setEmailId("abc@abc" + i +".com");
+            teacherPersonalProfile.setAddress("plot num" + i +" 100");
+            teacherProfileService.saveTeacherProfile(teacher, teacherPersonalProfile);
+        }*/
 
-      
     }
 
 

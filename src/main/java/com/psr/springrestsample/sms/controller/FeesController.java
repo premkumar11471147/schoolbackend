@@ -1,121 +1,44 @@
 package com.psr.springrestsample.sms.controller;
 
-import java.util.Date;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.psr.springrestsample.sms.model.Fees;
-import com.psr.springrestsample.sms.model.Student;
-import com.psr.springrestsample.sms.service.ClasseService;
 import com.psr.springrestsample.sms.service.FeesService;
-import com.psr.springrestsample.sms.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import jakarta.validation.Valid;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/fees/")
+@RequestMapping("/api/fees")
 public class FeesController {
-    private FeesService feesService;
-    private ClasseService classeService;
-    private StudentService studentService;
 
     @Autowired
-    public void setFessController(FeesService feesService, ClasseService classeService, StudentService studentService){
-        this.feesService = feesService;
-        this.classeService = classeService;
-        this.studentService = studentService;
+    private FeesService feesService;
+
+    // Add or Update Fees
+    @PostMapping
+    public ResponseEntity<Fees> addFees(@RequestBody Fees fees) {
+        return ResponseEntity.ok(feesService.saveFees(fees));
     }
 
-    @GetMapping("show/form")
-    public String showFeeForm(Model model, Fees fees){
-        model.addAttribute("fees", fees);
-        model.addAttribute("classes", classeService.getAllClasse());
-        model.addAttribute("students", studentService.listAllStudents());
-        return "add-fees";
+    // Get All Fees
+    @GetMapping
+    public ResponseEntity<List<Fees>> getAllFees() {
+        return ResponseEntity.ok(feesService.getAllFees());
     }
 
-    @GetMapping("list/fees")
-    public String listAllFees(Model model){
-        //long t = feesService.count();
-        model.addAttribute("feess", feesService.getAllFees());
-        return "fees";
+    // Get Fees by ID
+    @GetMapping("/{receiptId}")
+    public ResponseEntity<Fees> getFeesById(@PathVariable Long receiptId) {
+        Optional<Fees> fees = feesService.getFeesById(receiptId);
+        return fees.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping("pay/fees")
-    public String payFees(@Valid Fees fees, Model model, BindingResult result, Student student){
-        model.addAttribute("fees", new Object());
-        
-        if(result.hasErrors()){
-            return "add-fees";
-        }
-        fees.setTotal(70000);
-        fees.setYearp(Date());
-        long r = fees.getTotal() - fees.getAmount();
-        if( r <= 0){
-            r = (3/100)*fees.getAmount();
-        }
-        fees.setRest(r);
-        Date date = new Date();
-        fees.setPmdate(date);
-        
-        feesService.save(fees);
-        model.addAttribute("feess", feesService.getAllFees());
-        return "redirect:/fees/list/fees";
+    // Delete Fees
+    @DeleteMapping("/{receiptId}")
+    public ResponseEntity<Void> deleteFees(@PathVariable Long receiptId) {
+        feesService.deleteFees(receiptId);
+        return ResponseEntity.noContent().build();
     }
-
-    private Date Date() {
-        Date date = new Date();
-        return date;
-    }
-
-    @GetMapping("edit/fees/{id}")
-    public String editFees(@PathVariable("id") long id, Model model, Fees fees, BindingResult result, Student student){
-        fees = feesService.findById(id);
-        
-        model.addAttribute("fees", fees);
-        model.addAttribute("classe", classeService.getAllClasse());
-        model.addAttribute("student", student);
-        return "update-fees";
-    }
-
-    @GetMapping("view/{sui}/{id}")
-    public String viewFees(@PathVariable("id") long id, Model model, @PathVariable("sui") String sui){
-        Fees fee = feesService.findById(id);
-        //model.addAttribute("students", studentService.listAllStudents());
-        //Student student = ((Student) studentService.listAllStudents());
-        //String student = new Student().getSui();
-        model.addAttribute("fees", fee);
-       // model.addAttribute("students", studentService.findBySui(fee.getSui()));
-        model.addAttribute("students", studentService.listAllStudents());
-        model.addAttribute("classe", classeService.getAllClasse());
-        return "viewfees";
-    }
-
-    @PostMapping("update/fees/{id}")
-    public String updateFees(@PathVariable("id") long id, Model model, Fees fees, BindingResult result){
-        if(result.hasErrors()){
-            fees.setId(id);
-            return "update-fees";
-        }
-        feesService.save(fees);
-        model.addAttribute("fees", feesService.getAllFees());
-        model.addAttribute("classe", classeService.getAllClasse());
-        return "fees";
-    }
-
-    @GetMapping("delete/fees/{id}")
-    public String deleteFees(@PathVariable("id") long id, Model model){
-        Fees fees = feesService.findById(id);
-        feesService.delete(fees);
-        model.addAttribute("feess", feesService.getAllFees());
-        return "fees";
-    }
-    
 }
