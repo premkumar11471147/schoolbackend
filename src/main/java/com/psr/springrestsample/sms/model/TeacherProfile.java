@@ -1,5 +1,6 @@
 package com.psr.springrestsample.sms.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -32,6 +33,7 @@ public class TeacherProfile {
     private Boolean classTeacher;
 
     @OneToOne(mappedBy = "teacherProfile", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private TeacherPersonalProfile teacherPersonalProfile;
 
 }

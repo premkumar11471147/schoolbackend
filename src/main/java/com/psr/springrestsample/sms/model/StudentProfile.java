@@ -1,5 +1,6 @@
 package com.psr.springrestsample.sms.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -40,6 +41,7 @@ public class StudentProfile {
 
     // Bi-directional One-to-One mapping
     @OneToOne(mappedBy = "studentProfile", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private StudentPersonalProfile studentPersonalProfile;
 
     public void setStudentPersonalProfile(StudentPersonalProfile studentPersonalProfile) {

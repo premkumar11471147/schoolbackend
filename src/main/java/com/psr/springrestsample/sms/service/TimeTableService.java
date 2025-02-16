@@ -15,9 +15,11 @@ import java.util.Optional;
 
 @Service
 public class TimeTableService {
-
+    @Autowired
     private TeacherProfileRepository teacherProfileRepository;
+    @Autowired
     private ClassRepository classRepository;
+    @Autowired
     private SubjectRepository subjectRepository;
 
     @Autowired

@@ -14,6 +14,7 @@ import java.util.Optional;
 @RequestMapping("/api/report-cards")
 public class ReportCardController {
 
+
     @Autowired
     private ReportCardService reportCardService;
 
@@ -29,11 +30,16 @@ public class ReportCardController {
         return ResponseEntity.ok(reportCardService.getAllReportCards());
     }
 
+
+
     // Get Report Card by Student ID
-    @GetMapping("/{studentId}")
-    public ResponseEntity<ReportCard> getReportCardByStudentId(@PathVariable Long studentId) {
-        Optional<ReportCard> reportCard = reportCardService.getReportCardByStudentId(studentId);
-        return reportCard.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    @GetMapping("/student/{studentId}")
+    public ResponseEntity<List<ReportCard>> getReportCardByStudentId(@PathVariable Long studentId) {
+        List<ReportCard> reportCards = reportCardService.getReportCardByStudentId(studentId);
+        if (reportCards.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(reportCards);
     }
 
     // Delete Report Card

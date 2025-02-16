@@ -1,5 +1,6 @@
 package com.psr.springrestsample.sms.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -41,5 +42,6 @@ public class TeacherPersonalProfile {
     @OneToOne
     @MapsId
     @JoinColumn(name = "teacher_id", referencedColumnName = "teacher_id")
+    @JsonBackReference
     private TeacherProfile teacherProfile;
 }

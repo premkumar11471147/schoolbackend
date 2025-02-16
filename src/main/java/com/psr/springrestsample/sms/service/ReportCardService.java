@@ -1,6 +1,5 @@
 package com.psr.springrestsample.sms.service;
 
-
 import com.psr.springrestsample.sms.model.ReportCard;
 import com.psr.springrestsample.sms.repository.ReportCardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +25,21 @@ public class ReportCardService {
     }
 
     // Get Report Card by Student ID
-    public Optional<ReportCard> getReportCardByStudentId(Long studentId) {
-        return reportCardRepository.findById(studentId);
+    public List<ReportCard> getReportCardByStudentId(Long studentId) {
+        return reportCardRepository.findByStudent_StudentId(studentId);
     }
 
-    // Delete Report Card
+    // Get Report Card by Report Student ID (Primary Key)
+    public Optional<ReportCard> getReportCardById(Long reportStudentId) {
+        return reportCardRepository.findById(reportStudentId);
+    }
+
+    // Delete Report Card by ID
     public void deleteReportCard(Long reportStudentId) {
-        reportCardRepository.deleteById(reportStudentId);
+        if (reportCardRepository.existsById(reportStudentId)) {
+            reportCardRepository.deleteById(reportStudentId);
+        } else {
+            throw new RuntimeException("Report card not found with ID: " + reportStudentId);
+        }
     }
 }
-

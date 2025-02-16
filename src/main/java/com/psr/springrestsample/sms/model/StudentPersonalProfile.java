@@ -1,5 +1,6 @@
 package com.psr.springrestsample.sms.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -48,5 +49,6 @@ public class StudentPersonalProfile {
     @OneToOne
     @MapsId  // Ensures StudentPersonalProfile shares the same ID as StudentProfile
     @JoinColumn(name = "student_id")
+    @JsonBackReference
     private StudentProfile studentProfile;
 }
