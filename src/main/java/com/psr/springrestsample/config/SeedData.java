@@ -76,6 +76,7 @@ public class SeedData  implements CommandLineRunner {
             classService.saveClass(classEntity);
         }
 
+
         Optional<ClassEntity> classEntityOptional = classRepository.findById(1L);
         if (classEntityOptional.isPresent()) {
             ClassEntity classEntity = classEntityOptional.get();
