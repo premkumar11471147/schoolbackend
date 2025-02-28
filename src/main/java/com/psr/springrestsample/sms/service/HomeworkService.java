@@ -1,7 +1,7 @@
 package com.psr.springrestsample.sms.service;
 
 
-import com.psr.springrestsample.sms.model.Homework;
+import com.psr.springrestsample.sms.model.HomeworkModel;
 import com.psr.springrestsample.sms.repository.HomeworkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,17 +16,17 @@ public class HomeworkService {
     private HomeworkRepository homeworkRepository;
 
     // Add or Update Homework
-    public Homework saveHomework(Homework homework) {
+    public HomeworkModel saveHomework(HomeworkModel homework) {
         return homeworkRepository.save(homework);
     }
 
     // Get All Homework Assignments
-    public List<Homework> getAllHomework() {
+    public List<HomeworkModel> getAllHomework() {
         return homeworkRepository.findAll();
     }
 
     // Get Homework by Date
-    public Optional<Homework> getHomeworkByDate(String date) {
+    public Optional<HomeworkModel> getHomeworkByDate(String date) {
         return homeworkRepository.findById(date);
     }
 

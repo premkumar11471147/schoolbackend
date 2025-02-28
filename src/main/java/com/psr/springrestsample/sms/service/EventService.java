@@ -1,7 +1,7 @@
 package com.psr.springrestsample.sms.service;
 
 
-import com.psr.springrestsample.sms.model.Event;
+import com.psr.springrestsample.sms.model.EventModel;
 import com.psr.springrestsample.sms.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,17 +16,17 @@ public class EventService {
     private EventRepository eventRepository;
 
     // Add or Update Event
-    public Event saveEvent(Event event) {
+    public EventModel saveEvent(EventModel event) {
         return eventRepository.save(event);
     }
 
     // Get All Events
-    public List<Event> getAllEvents() {
+    public List<EventModel> getAllEvents() {
         return eventRepository.findAll();
     }
 
     // Get Event by ID
-    public Optional<Event> getEventById(Long eventId) {
+    public Optional<EventModel> getEventById(Long eventId) {
         return eventRepository.findById(eventId);
     }
 

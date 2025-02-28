@@ -1,7 +1,7 @@
 package com.psr.springrestsample.sms.controller;
 
 
-import com.psr.springrestsample.sms.model.Notification;
+import com.psr.springrestsample.sms.model.NotificationModel;
 import com.psr.springrestsample.sms.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,20 +19,20 @@ public class NotificationController {
 
     // Add or Update Notification
     @PostMapping
-    public ResponseEntity<Notification> addNotification(@RequestBody Notification notification) {
+    public ResponseEntity<NotificationModel> addNotification(@RequestBody NotificationModel notification) {
         return ResponseEntity.ok(notificationService.saveNotification(notification));
     }
 
     // Get All Notifications
     @GetMapping
-    public ResponseEntity<List<Notification>> getAllNotifications() {
+    public ResponseEntity<List<NotificationModel>> getAllNotifications() {
         return ResponseEntity.ok(notificationService.getAllNotifications());
     }
 
     // Get Notification by ID
     @GetMapping("/{notificationId}")
-    public ResponseEntity<Notification> getNotificationById(@PathVariable Long notificationId) {
-        Optional<Notification> notification = notificationService.getNotificationById(notificationId);
+    public ResponseEntity<NotificationModel> getNotificationById(@PathVariable Long notificationId) {
+        Optional<NotificationModel> notification = notificationService.getNotificationById(notificationId);
         return notification.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 

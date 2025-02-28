@@ -1,8 +1,7 @@
 package com.psr.springrestsample.sms.controller;
 
 import com.psr.springrestsample.sms.DTO.TeacherDto;
-import com.psr.springrestsample.sms.model.TeacherPersonalProfile;
-import com.psr.springrestsample.sms.model.TeacherProfile;
+import com.psr.springrestsample.sms.model.TeacherProfileModel;
 import com.psr.springrestsample.sms.service.TeacherProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +19,8 @@ public class TeacherProfileController {
 
     // Add Teacher with Personal Details
     @PostMapping
-    public ResponseEntity<TeacherProfile> addTeacher(@RequestBody TeacherDto request) {
-        TeacherProfile savedTeacher = teacherProfileService.saveTeacherProfile(request.getTeacherProfile(),
+    public ResponseEntity<TeacherProfileModel> addTeacher(@RequestBody TeacherDto request) {
+        TeacherProfileModel savedTeacher = teacherProfileService.saveTeacherProfile(request.getTeacherProfile(),
                 request.getTeacherPersonalProfile());
         return ResponseEntity.ok(savedTeacher);
     }
@@ -29,20 +28,20 @@ public class TeacherProfileController {
 
     // Get All Teachers
     @GetMapping
-    public ResponseEntity<List<TeacherProfile>> getAllTeachers() {
+    public ResponseEntity<List<TeacherProfileModel>> getAllTeachers() {
         return ResponseEntity.ok(teacherProfileService.getAllTeachers());
     }
 
     // Get Teacher by ID
     @GetMapping("/{teacherId}")
-    public ResponseEntity<TeacherProfile> getTeacherById(@PathVariable Long teacherId) {
-        Optional<TeacherProfile> teacherProfile = teacherProfileService.getTeacherById(teacherId);
+    public ResponseEntity<TeacherProfileModel> getTeacherById(@PathVariable Long teacherId) {
+        Optional<TeacherProfileModel> teacherProfile = teacherProfileService.getTeacherById(teacherId);
         return teacherProfile.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     // Get Teachers by School ID
     @GetMapping("/school/{schoolId}")
-    public ResponseEntity<List<TeacherProfile>> getTeachersBySchoolId(@PathVariable Long schoolId) {
+    public ResponseEntity<List<TeacherProfileModel>> getTeachersBySchoolId(@PathVariable Long schoolId) {
         return ResponseEntity.ok(teacherProfileService.getTeachersBySchoolId(schoolId));
     }
 

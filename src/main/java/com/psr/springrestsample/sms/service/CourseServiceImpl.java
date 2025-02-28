@@ -3,7 +3,7 @@ package com.psr.springrestsample.sms.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.psr.springrestsample.sms.model.Course;
+import com.psr.springrestsample.sms.model.CourseModel;
 import com.psr.springrestsample.sms.repository.CourseRepository;
 
 
@@ -17,22 +17,22 @@ public class CourseServiceImpl implements CourseService  {
     }
 
     @Override
-    public Iterable<Course> listAllCourses() {
+    public Iterable<CourseModel> listAllCourses() {
         return courseRepositry.findAll();
     }
 
     @Override
-    public Course saveCourse(Course course) {
+    public CourseModel saveCourse(CourseModel course) {
         return courseRepositry.save(course);
     }
 
     @Override
-    public void deleteCourse(Course course) {
+    public void deleteCourse(CourseModel course) {
         courseRepositry.delete(course);
     }
 
     @Override
-    public Course findById(long id) {
+    public CourseModel findById(long id) {
        return  courseRepositry.findById(id);
         
     }

@@ -1,7 +1,7 @@
 package com.psr.springrestsample.sms.service;
 
 
-import com.psr.springrestsample.sms.model.SchoolDetails;
+import com.psr.springrestsample.sms.model.SchoolDetailsModel;
 import com.psr.springrestsample.sms.repository.SchoolDetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,17 +16,17 @@ public class SchoolDetailsService {
     private SchoolDetailsRepository schoolDetailsRepository;
 
     // Add or Update School Details
-    public SchoolDetails saveSchoolDetails(SchoolDetails schoolDetails) {
+    public SchoolDetailsModel saveSchoolDetails(SchoolDetailsModel schoolDetails) {
         return schoolDetailsRepository.save(schoolDetails);
     }
 
     // Get All School Details
-    public List<SchoolDetails> getAllSchoolDetails() {
+    public List<SchoolDetailsModel> getAllSchoolDetails() {
         return schoolDetailsRepository.findAll();
     }
 
     // Get School Details by ID
-    public Optional<SchoolDetails> getSchoolDetailsById(Long schoolId) {
+    public Optional<SchoolDetailsModel> getSchoolDetailsById(Long schoolId) {
         return schoolDetailsRepository.findById(schoolId);
     }
 

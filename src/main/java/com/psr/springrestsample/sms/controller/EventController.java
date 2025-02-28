@@ -1,7 +1,7 @@
 package com.psr.springrestsample.sms.controller;
 
 
-import com.psr.springrestsample.sms.model.Event;
+import com.psr.springrestsample.sms.model.EventModel;
 import com.psr.springrestsample.sms.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,20 +19,20 @@ public class EventController {
 
     // Add or Update Event
     @PostMapping
-    public ResponseEntity<Event> addEvent(@RequestBody Event event) {
+    public ResponseEntity<EventModel> addEvent(@RequestBody EventModel event) {
         return ResponseEntity.ok(eventService.saveEvent(event));
     }
 
     // Get All Events
     @GetMapping
-    public ResponseEntity<List<Event>> getAllEvents() {
+    public ResponseEntity<List<EventModel>> getAllEvents() {
         return ResponseEntity.ok(eventService.getAllEvents());
     }
 
     // Get Event by ID
     @GetMapping("/{eventId}")
-    public ResponseEntity<Event> getEventById(@PathVariable Long eventId) {
-        Optional<Event> event = eventService.getEventById(eventId);
+    public ResponseEntity<EventModel> getEventById(@PathVariable Long eventId) {
+        Optional<EventModel> event = eventService.getEventById(eventId);
         return event.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 

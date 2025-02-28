@@ -1,7 +1,7 @@
 package com.psr.springrestsample.sms.controller;
 
 
-import com.psr.springrestsample.sms.model.TimeTable;
+import com.psr.springrestsample.sms.model.TimeTableModel;
 import com.psr.springrestsample.sms.service.TimeTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,20 +19,20 @@ public class TimeTableController {
 
     // Add or Update Time Table
     @PostMapping
-    public ResponseEntity<TimeTable> addTimeTable(@RequestBody TimeTable timeTable) {
+    public ResponseEntity<TimeTableModel> addTimeTable(@RequestBody TimeTableModel timeTable) {
         return ResponseEntity.ok(timeTableService.saveTimeTable(timeTable));
     }
 
     // Get All Time Tables
     @GetMapping
-    public ResponseEntity<List<TimeTable>> getAllTimeTables() {
+    public ResponseEntity<List<TimeTableModel>> getAllTimeTables() {
         return ResponseEntity.ok(timeTableService.getAllTimeTables());
     }
 
     // Get Time Table by ID
     @GetMapping("/{timeId}")
-    public ResponseEntity<TimeTable> getTimeTableById(@PathVariable Long timeId) {
-        Optional<TimeTable> timeTable = timeTableService.getTimeTableById(timeId);
+    public ResponseEntity<TimeTableModel> getTimeTableById(@PathVariable Long timeId) {
+        Optional<TimeTableModel> timeTable = timeTableService.getTimeTableById(timeId);
         return timeTable.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 

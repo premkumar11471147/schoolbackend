@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.psr.springrestsample.sms.model.Contact;
+import com.psr.springrestsample.sms.model.ContactModel;
 import com.psr.springrestsample.sms.service.ContactService;
 
 import jakarta.validation.Valid;
@@ -27,13 +27,13 @@ public class ContactController{
     }
 
 @GetMapping("show")
-public String showContact(Model model, Contact contact){
+public String showContact(Model model, ContactModel contact){
 model.addAttribute("contact", contact);
     return "contact";
 }
 
 @GetMapping("contactform/send")
-public String SendContactForm(@Valid long id, Model model, BindingResult result, Contact contact){
+public String SendContactForm(@Valid long id, Model model, BindingResult result, ContactModel contact){
     if(result.hasErrors()){
         return "contact";
     }
@@ -43,7 +43,7 @@ public String SendContactForm(@Valid long id, Model model, BindingResult result,
 }
 
 @GetMapping("contact/delete/{id}")
-public String deleteContact(@PathVariable("id") long id, Model model, BindingResult result, Contact contact){
+public String deleteContact(@PathVariable("id") long id, Model model, BindingResult result, ContactModel contact){
     contact = contactService.getContactById(id);
     contactService.deleteContact(contact);
     model.addAttribute("contact", contact);

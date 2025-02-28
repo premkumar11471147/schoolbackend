@@ -1,14 +1,14 @@
 package com.psr.springrestsample.sms.service;
 
-import com.psr.springrestsample.sms.model.Contact;
+import com.psr.springrestsample.sms.model.ContactModel;
 
 public interface ContactService {
 
-    Contact saveContact(Contact contact);
+    ContactModel saveContact(ContactModel contact);
 
-    Iterable<Contact> ShowContact();
+    Iterable<ContactModel> ShowContact();
 
-    Contact getContactById(long id);
+    ContactModel getContactById(long id);
 
-    void deleteContact(Contact contact);
+    void deleteContact(ContactModel contact);
 }

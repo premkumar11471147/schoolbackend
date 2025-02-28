@@ -1,7 +1,7 @@
 package com.psr.springrestsample.sms.controller;
 
 
-import com.psr.springrestsample.sms.model.SchoolDetails;
+import com.psr.springrestsample.sms.model.SchoolDetailsModel;
 import com.psr.springrestsample.sms.service.SchoolDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,20 +19,20 @@ public class SchoolDetailsController {
 
     // Add or Update School Details
     @PostMapping
-    public ResponseEntity<SchoolDetails> addSchoolDetails(@RequestBody SchoolDetails schoolDetails) {
+    public ResponseEntity<SchoolDetailsModel> addSchoolDetails(@RequestBody SchoolDetailsModel schoolDetails) {
         return ResponseEntity.ok(schoolDetailsService.saveSchoolDetails(schoolDetails));
     }
 
     // Get All School Details
     @GetMapping
-    public ResponseEntity<List<SchoolDetails>> getAllSchoolDetails() {
+    public ResponseEntity<List<SchoolDetailsModel>> getAllSchoolDetails() {
         return ResponseEntity.ok(schoolDetailsService.getAllSchoolDetails());
     }
 
     // Get School Details by ID
     @GetMapping("/{schoolId}")
-    public ResponseEntity<SchoolDetails> getSchoolDetailsById(@PathVariable Long schoolId) {
-        Optional<SchoolDetails> schoolDetails = schoolDetailsService.getSchoolDetailsById(schoolId);
+    public ResponseEntity<SchoolDetailsModel> getSchoolDetailsById(@PathVariable Long schoolId) {
+        Optional<SchoolDetailsModel> schoolDetails = schoolDetailsService.getSchoolDetailsById(schoolId);
         return schoolDetails.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 

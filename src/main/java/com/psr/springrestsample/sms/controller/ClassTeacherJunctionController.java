@@ -1,6 +1,6 @@
 package com.psr.springrestsample.sms.controller;
 
-import com.psr.springrestsample.sms.model.ClassTeacherJunction;
+import com.psr.springrestsample.sms.model.ClassTeacherJunctionModel;
 import com.psr.springrestsample.sms.service.ClassTeacherJunctionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,20 +18,20 @@ public class ClassTeacherJunctionController {
 
     // Assign Teacher to a Class
     @PostMapping
-    public ResponseEntity<ClassTeacherJunction> assignTeacherToClass(@RequestBody ClassTeacherJunction classTeacherJunction) {
+    public ResponseEntity<ClassTeacherJunctionModel> assignTeacherToClass(@RequestBody ClassTeacherJunctionModel classTeacherJunction) {
         return ResponseEntity.ok(classTeacherJunctionService.assignTeacherToClass(classTeacherJunction));
     }
 
     // Get All Assignments
     @GetMapping
-    public ResponseEntity<List<ClassTeacherJunction>> getAllAssignments() {
+    public ResponseEntity<List<ClassTeacherJunctionModel>> getAllAssignments() {
         return ResponseEntity.ok(classTeacherJunctionService.getAllAssignments());
     }
 
     // Get Assignment by ID
     @GetMapping("/{id}")
-    public ResponseEntity<ClassTeacherJunction> getAssignmentById(@PathVariable Long id) {
-        Optional<ClassTeacherJunction> assignment = classTeacherJunctionService.getAssignmentById(id);
+    public ResponseEntity<ClassTeacherJunctionModel> getAssignmentById(@PathVariable Long id) {
+        Optional<ClassTeacherJunctionModel> assignment = classTeacherJunctionService.getAssignmentById(id);
         return assignment.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 

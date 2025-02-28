@@ -9,7 +9,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReportCard {
+public class ReportCardModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,11 +18,11 @@ public class ReportCard {
 
     @ManyToOne
     @JoinColumn(name = "student_id", nullable = false)
-    private StudentProfile student;  // Foreign Key to Student
+    private StudentProfileModel student;  // Foreign Key to Student
 
     @ManyToOne
     @JoinColumn(name = "exam_id", nullable = false)
-    private ExamTimeTable exam;  // Foreign Key to Exam
+    private ExamTimeTableModel exam;  // Foreign Key to Exam
 
     @Column(name = "marks_secured", nullable = false)
     private Double marksSecured;  // Marks secured by the student

@@ -10,7 +10,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TeacherPersonalProfile {
+public class TeacherPersonalProfileModel {
 
     @Id
     private Long teacherId; // Foreign Key from TeacherProfile
@@ -43,5 +43,5 @@ public class TeacherPersonalProfile {
     @MapsId
     @JoinColumn(name = "teacher_id", referencedColumnName = "teacher_id")
     @JsonBackReference
-    private TeacherProfile teacherProfile;
+    private TeacherProfileModel teacherProfile;
 }

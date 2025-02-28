@@ -12,7 +12,7 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class ClassEntity {
+public class ClassModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

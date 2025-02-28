@@ -1,6 +1,6 @@
 package com.psr.springrestsample.sms.service;
 
-import com.psr.springrestsample.sms.model.ClassTeacherJunction;
+import com.psr.springrestsample.sms.model.ClassTeacherJunctionModel;
 import com.psr.springrestsample.sms.repository.ClassTeacherJunctionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,17 +14,17 @@ public class ClassTeacherJunctionService {
     private ClassTeacherJunctionRepository classTeacherJunctionRepository;
 
     // Assign Teacher to a Class
-    public ClassTeacherJunction assignTeacherToClass(ClassTeacherJunction classTeacherJunction) {
+    public ClassTeacherJunctionModel assignTeacherToClass(ClassTeacherJunctionModel classTeacherJunction) {
         return classTeacherJunctionRepository.save(classTeacherJunction);
     }
 
     // Get All Assignments
-    public List<ClassTeacherJunction> getAllAssignments() {
+    public List<ClassTeacherJunctionModel> getAllAssignments() {
         return classTeacherJunctionRepository.findAll();
     }
 
     // Get Assignment by ID
-    public Optional<ClassTeacherJunction> getAssignmentById(Long id) {
+    public Optional<ClassTeacherJunctionModel> getAssignmentById(Long id) {
         return classTeacherJunctionRepository.findById(id);
     }
 

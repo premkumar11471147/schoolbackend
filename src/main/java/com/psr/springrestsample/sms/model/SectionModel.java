@@ -7,7 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Section{
+public class SectionModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long sec_id;
@@ -15,7 +15,7 @@ public class Section{
 	@Column(name = "sec_name")
 	private String sec_name;
 
-	public Section(){}
+	public SectionModel(){}
 
 	public void setSecId(long sec_id){
 		this.sec_id = sec_id;

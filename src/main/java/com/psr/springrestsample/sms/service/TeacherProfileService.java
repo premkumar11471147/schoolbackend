@@ -1,7 +1,7 @@
 package com.psr.springrestsample.sms.service;
 
-import com.psr.springrestsample.sms.model.TeacherPersonalProfile;
-import com.psr.springrestsample.sms.model.TeacherProfile;
+import com.psr.springrestsample.sms.model.TeacherPersonalProfileModel;
+import com.psr.springrestsample.sms.model.TeacherProfileModel;
 import com.psr.springrestsample.sms.repository.TeacherPersonalProfileRepository;
 import com.psr.springrestsample.sms.repository.TeacherProfileRepository;
 import jakarta.transaction.Transactional;
@@ -21,7 +21,7 @@ public class TeacherProfileService {
 
     // Create or Update Teacher Profile with Personal Details
     @Transactional
-    public TeacherProfile saveTeacherProfile(TeacherProfile teacherProfile, TeacherPersonalProfile personalProfile) {
+    public TeacherProfileModel saveTeacherProfile(TeacherProfileModel teacherProfile, TeacherPersonalProfileModel personalProfile) {
         // Link TeacherProfile and TeacherPersonalProfile
         teacherProfile.setTeacherPersonalProfile(personalProfile);
         personalProfile.setTeacherProfile(teacherProfile);
@@ -32,17 +32,17 @@ public class TeacherProfileService {
 
 
     // Get All Teachers
-    public List<TeacherProfile> getAllTeachers() {
+    public List<TeacherProfileModel> getAllTeachers() {
         return teacherProfileRepository.findAll();
     }
 
     // Get Teacher Profile by ID
-    public Optional<TeacherProfile> getTeacherById(Long teacherId) {
+    public Optional<TeacherProfileModel> getTeacherById(Long teacherId) {
         return teacherProfileRepository.findById(teacherId);
     }
 
     // Get Teachers by School ID
-    public List<TeacherProfile> getTeachersBySchoolId(Long schoolId) {
+    public List<TeacherProfileModel> getTeachersBySchoolId(Long schoolId) {
         return teacherProfileRepository.findBySchoolId(schoolId);
     }
 

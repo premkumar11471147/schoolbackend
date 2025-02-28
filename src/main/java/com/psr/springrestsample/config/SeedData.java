@@ -1,20 +1,17 @@
 package com.psr.springrestsample.config;
 
-import com.psr.springrestsample.sms.DTO.StudentDto;
 import com.psr.springrestsample.sms.model.*;
 import com.psr.springrestsample.sms.repository.ClassRepository;
 import com.psr.springrestsample.sms.repository.StudentProfileRepository;
 import com.psr.springrestsample.sms.service.ClassService;
 import com.psr.springrestsample.sms.service.StudentProfileService;
 import com.psr.springrestsample.sms.service.TeacherProfileService;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import com.psr.springrestsample.model.Account;
 import com.psr.springrestsample.service.AccountService;
-import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.Optional;
@@ -68,7 +65,7 @@ public class SeedData  implements CommandLineRunner {
 
 
         for (long i = 1; i < 10; i++) {
-            ClassEntity classEntity = new ClassEntity();
+            ClassModel classEntity = new ClassModel();
             classEntity.setClassId(i);
             classEntity.setClassName("5th" + i);
             classEntity.setClassSection("a");
@@ -77,13 +74,13 @@ public class SeedData  implements CommandLineRunner {
         }
 
 
-        Optional<ClassEntity> classEntityOptional = classRepository.findById(1L);
+        Optional<ClassModel> classEntityOptional = classRepository.findById(1L);
         if (classEntityOptional.isPresent()) {
-            ClassEntity classEntity = classEntityOptional.get();
+            ClassModel classEntity = classEntityOptional.get();
 
             for (long i = 1; i <= 10; i++) {
                 // Creating a student profile
-                StudentProfile student = new StudentProfile();
+                StudentProfileModel student = new StudentProfileModel();
                 student.setClassEntity(classEntity);
                 student.setAdmissionId("stud001"+i);
                 student.setFirstName("John"+i);
@@ -92,7 +89,7 @@ public class SeedData  implements CommandLineRunner {
                 student.setSchoolId(1L);
 
 // Creating personal profile (but no ID set directly)
-                StudentPersonalProfile personalProfile = new StudentPersonalProfile();
+                StudentPersonalProfileModel personalProfile = new StudentPersonalProfileModel();
                 personalProfile.setPhoto("photo.jpg"+i);
                 personalProfile.setDateOfBirth("2001-01-01"+i);
                 personalProfile.setGender("Male");

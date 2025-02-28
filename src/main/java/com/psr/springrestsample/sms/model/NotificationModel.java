@@ -10,7 +10,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Notification {
+public class NotificationModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,10 +25,10 @@ public class Notification {
 
     @ManyToOne
     @JoinColumn(name = "class_id", nullable = false)
-    private ClassEntity classEntity;  // Foreign Key to Class
+    private ClassModel classEntity;  // Foreign Key to Class
 
     @ManyToOne
     @JoinColumn(name = "teacher_id", nullable = false)
-    private TeacherProfile teacher;  // Foreign Key to Teacher
+    private TeacherProfileModel teacher;  // Foreign Key to Teacher
 }
 

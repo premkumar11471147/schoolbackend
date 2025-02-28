@@ -1,7 +1,7 @@
 package com.psr.springrestsample.sms.service;
 
 
-import com.psr.springrestsample.sms.model.Notification;
+import com.psr.springrestsample.sms.model.NotificationModel;
 import com.psr.springrestsample.sms.repository.NotificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,17 +16,17 @@ public class NotificationService {
     private NotificationRepository notificationRepository;
 
     // Add or Update Notification
-    public Notification saveNotification(Notification notification) {
+    public NotificationModel saveNotification(NotificationModel notification) {
         return notificationRepository.save(notification);
     }
 
     // Get All Notifications
-    public List<Notification> getAllNotifications() {
+    public List<NotificationModel> getAllNotifications() {
         return notificationRepository.findAll();
     }
 
     // Get Notification by ID
-    public Optional<Notification> getNotificationById(Long notificationId) {
+    public Optional<NotificationModel> getNotificationById(Long notificationId) {
         return notificationRepository.findById(notificationId);
     }
 

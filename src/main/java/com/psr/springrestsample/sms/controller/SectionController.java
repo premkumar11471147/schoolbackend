@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.psr.springrestsample.sms.model.Section;
+import com.psr.springrestsample.sms.model.SectionModel;
 import com.psr.springrestsample.sms.service.SectionService;
 
 import jakarta.validation.Valid;
@@ -37,14 +37,14 @@ public class SectionController {
     }
 
     @PostMapping("add/section")
-    public String newSection(@Valid Section section, Model model){
+    public String newSection(@Valid SectionModel section, Model model){
         sectionService.saveSection(section);
         model.addAttribute("classes", sectionService.getAllSection());
         return "section";
     }
 
     @GetMapping("edit/section/{id}")
-    public String editSection(@PathVariable("id") long id, Section section, Model model, BindingResult result){
+    public String editSection(@PathVariable("id") long id, SectionModel section, Model model, BindingResult result){
         if(result.hasErrors()){
             return "section";
         }
@@ -53,7 +53,7 @@ public class SectionController {
     }
 
     @PostMapping("update/section/{id}")
-    public String updateSection(@PathVariable("id") long id, Model model, BindingResult result, Section section){
+    public String updateSection(@PathVariable("id") long id, Model model, BindingResult result, SectionModel section){
         if(result.hasErrors()){
             section.setSecId(id);
             return "section";

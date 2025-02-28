@@ -1,7 +1,7 @@
 package com.psr.springrestsample.sms.service;
 
 
-import com.psr.springrestsample.sms.model.Subject;
+import com.psr.springrestsample.sms.model.SubjectModel;
 import com.psr.springrestsample.sms.repository.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,17 +16,17 @@ public class SubjectService {
     private SubjectRepository subjectRepository;
 
     // Add or Update Subject
-    public Subject saveSubject(Subject subject) {
+    public SubjectModel saveSubject(SubjectModel subject) {
         return subjectRepository.save(subject);
     }
 
     // Get All Subjects
-    public List<Subject> getAllSubjects() {
+    public List<SubjectModel> getAllSubjects() {
         return subjectRepository.findAll();
     }
 
     // Get Subject by ID
-    public Optional<Subject> getSubjectById(Long subjectId) {
+    public Optional<SubjectModel> getSubjectById(Long subjectId) {
         return subjectRepository.findById(subjectId);
     }
 

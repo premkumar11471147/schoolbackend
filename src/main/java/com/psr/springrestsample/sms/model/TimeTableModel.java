@@ -10,7 +10,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TimeTable {
+public class TimeTableModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,11 +25,11 @@ public class TimeTable {
 
     @ManyToOne
     @JoinColumn(name = "teacher_id", nullable = false)
-    private TeacherProfile teacher;  // Foreign Key to Teacher
+    private TeacherProfileModel teacher;  // Foreign Key to Teacher
 
     @ManyToOne
     @JoinColumn(name = "class_id", nullable = false)
-    private ClassEntity classEntity;  // Foreign Key to Class
+    private ClassModel classEntity;  // Foreign Key to Class
 
     @Column(name = "weekdays", nullable = false)
     private String weekdays;  // Weekdays (e.g., Monday, Tuesday)
@@ -39,6 +39,6 @@ public class TimeTable {
 
     @ManyToOne
     @JoinColumn(name = "subject_id", nullable = false)
-    private Subject subject;  // Foreign Key to Subject
+    private SubjectModel subject;  // Foreign Key to Subject
 }
 

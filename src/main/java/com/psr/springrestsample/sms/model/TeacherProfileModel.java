@@ -10,7 +10,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TeacherProfile {
+public class TeacherProfileModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,6 +34,6 @@ public class TeacherProfile {
 
     @OneToOne(mappedBy = "teacherProfile", cascade = CascadeType.ALL)
     @JsonManagedReference
-    private TeacherPersonalProfile teacherPersonalProfile;
+    private TeacherPersonalProfileModel teacherPersonalProfile;
 
 }

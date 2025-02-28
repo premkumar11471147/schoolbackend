@@ -9,7 +9,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ClassTeacherJunction {
+public class ClassTeacherJunctionModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,9 +18,9 @@ public class ClassTeacherJunction {
 
     @ManyToOne
     @JoinColumn(name = "teacher_id", nullable = false)
-    private TeacherProfile teacher;  // Foreign Key
+    private TeacherProfileModel teacher;  // Foreign Key
 
     @ManyToOne
     @JoinColumn(name = "class_id", nullable = false)
-    private ClassEntity classEntity;  // Foreign Key
+    private ClassModel classEntity;  // Foreign Key
 }

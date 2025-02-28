@@ -1,13 +1,13 @@
 package com.psr.springrestsample.sms.service;
 
-import com.psr.springrestsample.sms.model.Course;
+import com.psr.springrestsample.sms.model.CourseModel;
 
 public interface CourseService {
 
-    Course saveCourse(Course course);
-    void deleteCourse(Course course);
-    Course findById(long id);
+    CourseModel saveCourse(CourseModel course);
+    void deleteCourse(CourseModel course);
+    CourseModel findById(long id);
 
-    Iterable<Course> listAllCourses();
+    Iterable<CourseModel> listAllCourses();
     
 }

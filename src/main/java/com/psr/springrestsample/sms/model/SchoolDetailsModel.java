@@ -11,7 +11,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SchoolDetails {
+public class SchoolDetailsModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

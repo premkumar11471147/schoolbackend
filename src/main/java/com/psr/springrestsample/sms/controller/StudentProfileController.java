@@ -1,6 +1,6 @@
 package com.psr.springrestsample.sms.controller;
 
-import com.psr.springrestsample.sms.model.StudentProfile;
+import com.psr.springrestsample.sms.model.StudentProfileModel;
 import com.psr.springrestsample.sms.service.StudentProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,26 +17,26 @@ public class StudentProfileController {
 	private StudentProfileService studentProfileService;
 
 	@PostMapping
-	public ResponseEntity<StudentProfile> addStudent(@RequestBody StudentProfile studentProfile) {
+	public ResponseEntity<StudentProfileModel> addStudent(@RequestBody StudentProfileModel studentProfile) {
 		System.out.println("Received Student Profile: " + studentProfile);
 
 		if (studentProfile.getAdmissionId() == null) {
 			return ResponseEntity.badRequest().body(null);
 		}
 
-		StudentProfile savedStudent = studentProfileService.saveStudentProfile(studentProfile);
+		StudentProfileModel savedStudent = studentProfileService.saveStudentProfile(studentProfile);
 		return ResponseEntity.ok(savedStudent);
 	}
 
 
 	@GetMapping
-	public ResponseEntity<List<StudentProfile>> getAllStudents() {
+	public ResponseEntity<List<StudentProfileModel>> getAllStudents() {
 		return ResponseEntity.ok(studentProfileService.getAllStudents());
 	}
 
 	@GetMapping("/{studentId}")
-	public ResponseEntity<StudentProfile> getStudentById(@PathVariable Long studentId) {
-		Optional<StudentProfile> studentProfile = studentProfileService.getStudentById(studentId);
+	public ResponseEntity<StudentProfileModel> getStudentById(@PathVariable Long studentId) {
+		Optional<StudentProfileModel> studentProfile = studentProfileService.getStudentById(studentId);
 		return studentProfile.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
 	}
 

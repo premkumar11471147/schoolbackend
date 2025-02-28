@@ -26,15 +26,15 @@ public class TimeTableService {
     private TimeTableRepository timeTableRepository;
 
     // Add or Update Time Table
-    public TimeTable saveTimeTable(TimeTable timeTable) {
+    public TimeTableModel saveTimeTable(TimeTableModel timeTable) {
         // Fetch Teacher, ClassEntity, and Subject from DB
-        TeacherProfile teacher = teacherProfileRepository.findById(timeTable.getTeacher().getTeacherId())
+        TeacherProfileModel teacher = teacherProfileRepository.findById(timeTable.getTeacher().getTeacherId())
                 .orElseThrow(() -> new RuntimeException("Teacher not found"));
 
-        ClassEntity classEntity = classRepository.findById(timeTable.getClassEntity().getClassId())
+        ClassModel classEntity = classRepository.findById(timeTable.getClassEntity().getClassId())
                 .orElseThrow(() -> new RuntimeException("Class not found"));
 
-        Subject subject = subjectRepository.findById(timeTable.getSubject().getSubjectId())
+        SubjectModel subject = subjectRepository.findById(timeTable.getSubject().getSubjectId())
                 .orElseThrow(() -> new RuntimeException("Subject not found"));
 
         // Set the fetched objects
@@ -47,12 +47,12 @@ public class TimeTableService {
 
 
     // Get All Time Tables
-    public List<TimeTable> getAllTimeTables() {
+    public List<TimeTableModel> getAllTimeTables() {
         return timeTableRepository.findAll();
     }
 
     // Get Time Table by ID
-    public Optional<TimeTable> getTimeTableById(Long timeId) {
+    public Optional<TimeTableModel> getTimeTableById(Long timeId) {
         return timeTableRepository.findById(timeId);
     }
 

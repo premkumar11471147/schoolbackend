@@ -1,6 +1,6 @@
 package com.psr.springrestsample.sms.service;
 
-import com.psr.springrestsample.sms.model.ReportCard;
+import com.psr.springrestsample.sms.model.ReportCardModel;
 import com.psr.springrestsample.sms.repository.ReportCardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,22 +15,22 @@ public class ReportCardService {
     private ReportCardRepository reportCardRepository;
 
     // Add or Update Report Card
-    public ReportCard saveReportCard(ReportCard reportCard) {
+    public ReportCardModel saveReportCard(ReportCardModel reportCard) {
         return reportCardRepository.save(reportCard);
     }
 
     // Get All Report Cards
-    public List<ReportCard> getAllReportCards() {
+    public List<ReportCardModel> getAllReportCards() {
         return reportCardRepository.findAll();
     }
 
     // Get Report Card by Student ID
-    public List<ReportCard> getReportCardByStudentId(Long studentId) {
+    public List<ReportCardModel> getReportCardByStudentId(Long studentId) {
         return reportCardRepository.findByStudent_StudentId(studentId);
     }
 
     // Get Report Card by Report Student ID (Primary Key)
-    public Optional<ReportCard> getReportCardById(Long reportStudentId) {
+    public Optional<ReportCardModel> getReportCardById(Long reportStudentId) {
         return reportCardRepository.findById(reportStudentId);
     }
 

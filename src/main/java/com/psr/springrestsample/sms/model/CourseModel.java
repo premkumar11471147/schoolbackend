@@ -7,7 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity()
-public class Course{
+public class CourseModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long co_id;
@@ -15,7 +15,7 @@ public class Course{
 	@Column(name="co_name")
 	private String co_name;
 
-	public Course(){}
+	public CourseModel(){}
 
 	public long getId(){
 		return co_id;

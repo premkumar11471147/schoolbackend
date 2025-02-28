@@ -15,7 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode
-public class TeacherAttendance {
+public class TeacherAttendanceModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,7 @@ public class TeacherAttendance {
     @NotNull
     @ManyToOne
     @JoinColumn(name = "teacher_id", referencedColumnName = "teacher_id", nullable = false)
-    private TeacherProfile teacher;  // Foreign Key linking to TeacherProfile
+    private TeacherProfileModel teacher;  // Foreign Key linking to TeacherProfile
 
     @NotNull
     @Column(name = "date", nullable = false)

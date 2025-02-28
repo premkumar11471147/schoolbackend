@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ExamTimeTable {
+public class ExamTimeTableModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,11 +20,11 @@ public class ExamTimeTable {
 
     @ManyToOne
     @JoinColumn(name = "class_id", nullable = false)
-    private ClassEntity classEntity;  // Foreign Key to Class
+    private ClassModel classEntity;  // Foreign Key to Class
 
     @ManyToOne
     @JoinColumn(name = "subject_id", nullable = false)
-    private Subject subject;  // Foreign Key to Subject
+    private SubjectModel subject;  // Foreign Key to Subject
 
     @Column(name = "exam_name", nullable = false)
     private String examName;

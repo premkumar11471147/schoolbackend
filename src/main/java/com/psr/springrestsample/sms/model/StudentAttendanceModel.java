@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class StudentAttendance {
+public class StudentAttendanceModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +21,7 @@ public class StudentAttendance {
 
     @ManyToOne
     @JoinColumn(name = "student_id", nullable = false)
-    private StudentProfile student;  // Foreign Key reference to StudentProfile
+    private StudentProfileModel student;  // Foreign Key reference to StudentProfile
 
     @Column(name = "date", nullable = false)
     private LocalDate date;  // Date of attendance

@@ -1,6 +1,6 @@
 package com.psr.springrestsample.sms.controller;
 
-import com.psr.springrestsample.sms.model.Fees;
+import com.psr.springrestsample.sms.model.FeesModel;
 import com.psr.springrestsample.sms.service.FeesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,20 +18,20 @@ public class FeesController {
 
     // Add or Update Fees
     @PostMapping
-    public ResponseEntity<Fees> addFees(@RequestBody Fees fees) {
+    public ResponseEntity<FeesModel> addFees(@RequestBody FeesModel fees) {
         return ResponseEntity.ok(feesService.saveFees(fees));
     }
 
     // Get All Fees
     @GetMapping
-    public ResponseEntity<List<Fees>> getAllFees() {
+    public ResponseEntity<List<FeesModel>> getAllFees() {
         return ResponseEntity.ok(feesService.getAllFees());
     }
 
     // Get Fees by ID
     @GetMapping("/{receiptId}")
-    public ResponseEntity<Fees> getFeesById(@PathVariable Long receiptId) {
-        Optional<Fees> fees = feesService.getFeesById(receiptId);
+    public ResponseEntity<FeesModel> getFeesById(@PathVariable Long receiptId) {
+        Optional<FeesModel> fees = feesService.getFeesById(receiptId);
         return fees.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 

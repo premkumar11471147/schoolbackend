@@ -1,13 +1,13 @@
 package com.psr.springrestsample.sms.DTO;
 
-import com.psr.springrestsample.sms.model.TeacherPersonalProfile;
-import com.psr.springrestsample.sms.model.TeacherProfile;
+import com.psr.springrestsample.sms.model.TeacherPersonalProfileModel;
+import com.psr.springrestsample.sms.model.TeacherProfileModel;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 public class TeacherDto {
-    private TeacherProfile teacherProfile;
-    private TeacherPersonalProfile teacherPersonalProfile;
+    private TeacherProfileModel teacherProfile;
+    private TeacherPersonalProfileModel teacherPersonalProfile;
 }

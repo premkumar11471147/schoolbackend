@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class StudentPersonalProfile {
+public class StudentPersonalProfileModel {
 
     @Id
     @Column(name = "student_id")  // Uses the same ID as StudentProfile
@@ -50,5 +50,5 @@ public class StudentPersonalProfile {
     @MapsId  // Ensures StudentPersonalProfile shares the same ID as StudentProfile
     @JoinColumn(name = "student_id")
     @JsonBackReference
-    private StudentProfile studentProfile;
+    private StudentProfileModel studentProfile;
 }

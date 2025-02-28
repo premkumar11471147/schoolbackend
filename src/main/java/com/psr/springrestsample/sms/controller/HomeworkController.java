@@ -1,7 +1,7 @@
 package com.psr.springrestsample.sms.controller;
 
 
-import com.psr.springrestsample.sms.model.Homework;
+import com.psr.springrestsample.sms.model.HomeworkModel;
 import com.psr.springrestsample.sms.service.HomeworkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,20 +19,20 @@ public class HomeworkController {
 
     // Add or Update Homework
     @PostMapping
-    public ResponseEntity<Homework> addHomework(@RequestBody Homework homework) {
+    public ResponseEntity<HomeworkModel> addHomework(@RequestBody HomeworkModel homework) {
         return ResponseEntity.ok(homeworkService.saveHomework(homework));
     }
 
     // Get All Homework Assignments
     @GetMapping
-    public ResponseEntity<List<Homework>> getAllHomework() {
+    public ResponseEntity<List<HomeworkModel>> getAllHomework() {
         return ResponseEntity.ok(homeworkService.getAllHomework());
     }
 
     // Get Homework by Date
     @GetMapping("/{date}")
-    public ResponseEntity<Homework> getHomeworkByDate(@PathVariable String date) {
-        Optional<Homework> homework = homeworkService.getHomeworkByDate(date);
+    public ResponseEntity<HomeworkModel> getHomeworkByDate(@PathVariable String date) {
+        Optional<HomeworkModel> homework = homeworkService.getHomeworkByDate(date);
         return homework.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 

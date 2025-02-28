@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Fees {
+public class FeesModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,11 +23,11 @@ public class Fees {
 
     @ManyToOne
     @JoinColumn(name = "class_id", nullable = false)
-    private ClassEntity classEntity;  // Foreign Key to Class
+    private ClassModel classEntity;  // Foreign Key to Class
 
     @ManyToOne
     @JoinColumn(name = "school_id", nullable = false)
-    private SchoolDetails schoolEntity;  // Foreign Key to School
+    private SchoolDetailsModel schoolEntity;  // Foreign Key to School
 
     @Column(name = "term", nullable = false)
     private String term;  // Fee Term (e.g., Semester 1, Semester 2)

@@ -1,7 +1,7 @@
 package com.psr.springrestsample.sms.controller;
 
 
-import com.psr.springrestsample.sms.model.ExamTimeTable;
+import com.psr.springrestsample.sms.model.ExamTimeTableModel;
 import com.psr.springrestsample.sms.service.ExamTimeTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,20 +19,20 @@ public class ExamTimeTableController {
 
     // Add or Update Exam Time Table
     @PostMapping
-    public ResponseEntity<ExamTimeTable> addExamTimeTable(@RequestBody ExamTimeTable examTimeTable) {
+    public ResponseEntity<ExamTimeTableModel> addExamTimeTable(@RequestBody ExamTimeTableModel examTimeTable) {
         return ResponseEntity.ok(examTimeTableService.saveExamTimeTable(examTimeTable));
     }
 
     // Get All Exam Time Tables
     @GetMapping
-    public ResponseEntity<List<ExamTimeTable>> getAllExamTimeTables() {
+    public ResponseEntity<List<ExamTimeTableModel>> getAllExamTimeTables() {
         return ResponseEntity.ok(examTimeTableService.getAllExamTimeTables());
     }
 
     // Get Exam Time Table by ID
     @GetMapping("/{examId}")
-    public ResponseEntity<ExamTimeTable> getExamTimeTableById(@PathVariable Long examId) {
-        Optional<ExamTimeTable> examTimeTable = examTimeTableService.getExamTimeTableById(examId);
+    public ResponseEntity<ExamTimeTableModel> getExamTimeTableById(@PathVariable Long examId) {
+        Optional<ExamTimeTableModel> examTimeTable = examTimeTableService.getExamTimeTableById(examId);
         return examTimeTable.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 

@@ -1,5 +1,5 @@
 package com.psr.springrestsample.sms.controller;
-import com.psr.springrestsample.sms.model.StudentAttendance;
+import com.psr.springrestsample.sms.model.StudentAttendanceModel;
 import com.psr.springrestsample.sms.service.StudentAttendanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,32 +18,32 @@ public class StudentAttendanceController {
 
     // Add or Update Attendance
     @PostMapping
-    public ResponseEntity< StudentAttendance> addAttendance(@RequestBody StudentAttendance attendance) {
+    public ResponseEntity<StudentAttendanceModel> addAttendance(@RequestBody StudentAttendanceModel attendance) {
         return ResponseEntity.ok(attendanceService.saveAttendance(attendance));
     }
 
     // Get All Attendance Records
     @GetMapping
-    public ResponseEntity<List<StudentAttendance>> getAllAttendance() {
+    public ResponseEntity<List<StudentAttendanceModel>> getAllAttendance() {
         return ResponseEntity.ok(attendanceService.getAllAttendance());
     }
 
     // Get Attendance by Student ID
     @GetMapping("/student/{studentId}")
-    public ResponseEntity<List<StudentAttendance>> getAttendanceByStudent(@PathVariable Long studentId) {
+    public ResponseEntity<List<StudentAttendanceModel>> getAttendanceByStudent(@PathVariable Long studentId) {
         return ResponseEntity.ok(attendanceService.getAttendanceByStudent(studentId));
     }
 
     // Get Attendance by Date
     @GetMapping("/date/{date}")
-    public ResponseEntity<List<StudentAttendance>> getAttendanceByDate(@PathVariable String date) {
+    public ResponseEntity<List<StudentAttendanceModel>> getAttendanceByDate(@PathVariable String date) {
         return ResponseEntity.ok(attendanceService.getAttendanceByDate(LocalDate.parse(date)));
     }
 
     // Get Attendance by ID
     @GetMapping("/{attendanceId}")
-    public ResponseEntity<StudentAttendance> getAttendanceById(@PathVariable Long attendanceId) {
-        Optional<StudentAttendance> attendance = attendanceService.getAttendanceById(attendanceId);
+    public ResponseEntity<StudentAttendanceModel> getAttendanceById(@PathVariable Long attendanceId) {
+        Optional<StudentAttendanceModel> attendance = attendanceService.getAttendanceById(attendanceId);
         return attendance.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 

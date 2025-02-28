@@ -1,7 +1,7 @@
 package com.psr.springrestsample.sms.service;
 
 
-import com.psr.springrestsample.sms.model.Fees;
+import com.psr.springrestsample.sms.model.FeesModel;
 import com.psr.springrestsample.sms.repository.FeesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,17 +16,17 @@ public class FeesService {
     private FeesRepository feesRepository;
 
     // Add or Update Fees
-    public Fees saveFees(Fees fees) {
+    public FeesModel saveFees(FeesModel fees) {
         return feesRepository.save(fees);
     }
 
     // Get All Fees
-    public List<Fees> getAllFees() {
+    public List<FeesModel> getAllFees() {
         return feesRepository.findAll();
     }
 
     // Get Fees by ID
-    public Optional<Fees> getFeesById(Long receiptId) {
+    public Optional<FeesModel> getFeesById(Long receiptId) {
         return feesRepository.findById(receiptId);
     }
 

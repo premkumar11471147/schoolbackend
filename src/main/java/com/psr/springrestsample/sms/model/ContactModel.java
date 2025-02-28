@@ -7,7 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Contact{
+public class ContactModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,7 +22,7 @@ public class Contact{
 	@Column(name="message")
 	private String message;
 
-	public Contact(String email, String message, String name){
+	public ContactModel(String email, String message, String name){
 		this.email = email;
 		this.name = name;
 		this.message = message;

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.psr.springrestsample.sms.model.Course;
+import com.psr.springrestsample.sms.model.CourseModel;
 import com.psr.springrestsample.sms.service.CourseService;
 
 import jakarta.validation.Valid;
@@ -39,7 +39,7 @@ public class CourseController{
     }
 
     @PostMapping(value="course/add")
-    public String addNewCourse(@Valid Course course, BindingResult result, Model model){
+    public String addNewCourse(@Valid CourseModel course, BindingResult result, Model model){
         if(result.hasErrors()){
             return "add-course";
         }
@@ -49,7 +49,7 @@ public class CourseController{
         return "course";
     }
     @GetMapping("course/edit/{id}")
-    public String editCourse(@PathVariable("id") long id, Course course, Model model, BindingResult result){
+    public String editCourse(@PathVariable("id") long id, CourseModel course, Model model, BindingResult result){
         course = courseService.findById(id);
         model.addAttribute("course", course);
 
@@ -57,7 +57,7 @@ public class CourseController{
     }
 
     @PostMapping(value = "course/update/{id}")
-    public String updateCourse(@PathVariable("id") long id, Course course, Model model, BindingResult result){
+    public String updateCourse(@PathVariable("id") long id, CourseModel course, Model model, BindingResult result){
         if(result.hasErrors()){
             course.setId(id);
             return "update-course";

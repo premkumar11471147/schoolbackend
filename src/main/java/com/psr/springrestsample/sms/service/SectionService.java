@@ -1,15 +1,15 @@
 package com.psr.springrestsample.sms.service;
 
-import com.psr.springrestsample.sms.model.Section;
+import com.psr.springrestsample.sms.model.SectionModel;
 
 public interface SectionService {
 
-    void deleteSection(Section section);
+    void deleteSection(SectionModel section);
 
-    Iterable<Section> getAllSection();
+    Iterable<SectionModel> getAllSection();
 
-    void saveSection(Section section);
+    void saveSection(SectionModel section);
 
-    Section getSectionById(long id);
+    SectionModel getSectionById(long id);
     
 }

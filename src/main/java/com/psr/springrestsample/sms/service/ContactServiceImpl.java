@@ -3,7 +3,7 @@ package com.psr.springrestsample.sms.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.psr.springrestsample.sms.model.Contact;
+import com.psr.springrestsample.sms.model.ContactModel;
 import com.psr.springrestsample.sms.repository.ContactRepository;
 
 @Service
@@ -16,26 +16,26 @@ public class ContactServiceImpl implements ContactService{
     }
 
     @Override
-    public Contact saveContact(Contact contact) {
+    public ContactModel saveContact(ContactModel contact) {
 
         return contactRepository.save(contact);
         
     }
 
     @Override
-    public Iterable<Contact> ShowContact() {
+    public Iterable<ContactModel> ShowContact() {
         return null;
         
     }
 
     @Override
-    public Contact getContactById(long id) {
+    public ContactModel getContactById(long id) {
         
         return contactRepository.findById(id);
     }
 
     @Override
-    public void deleteContact(Contact contact) {
+    public void deleteContact(ContactModel contact) {
         
         contactRepository.delete(contact);
         

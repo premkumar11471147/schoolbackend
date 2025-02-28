@@ -1,7 +1,7 @@
 package com.psr.springrestsample.sms.service;
 
 
-import com.psr.springrestsample.sms.model.TeacherAttendance;
+import com.psr.springrestsample.sms.model.TeacherAttendanceModel;
 import com.psr.springrestsample.sms.repository.TeacherAttendanceRepository;
 import org.springframework.stereotype.Service;
 
@@ -18,27 +18,27 @@ public class TeacherAttendanceService {
     }
 
     // Save Attendance Record
-    public TeacherAttendance saveAttendance(TeacherAttendance attendance) {
+    public TeacherAttendanceModel saveAttendance(TeacherAttendanceModel attendance) {
         return teacherAttendanceRepository.save(attendance);
     }
 
     // Get All Attendance Records
-    public List<TeacherAttendance> getAllAttendance() {
+    public List<TeacherAttendanceModel> getAllAttendance() {
         return teacherAttendanceRepository.findAll();
     }
 
     // Get Attendance by ID
-    public Optional<TeacherAttendance> getAttendanceById(Long attendanceId) {
+    public Optional<TeacherAttendanceModel> getAttendanceById(Long attendanceId) {
         return teacherAttendanceRepository.findById(attendanceId);
     }
 
     // Get Attendance by Teacher ID
-    public List<TeacherAttendance> getAttendanceByTeacherId(Long teacherId) {
+    public List<TeacherAttendanceModel> getAttendanceByTeacherId(Long teacherId) {
         return teacherAttendanceRepository.findByTeacherTeacherId(teacherId);
     }
 
     // Update Attendance Record
-    public TeacherAttendance updateAttendance(Long attendanceId, TeacherAttendance updatedAttendance) {
+    public TeacherAttendanceModel updateAttendance(Long attendanceId, TeacherAttendanceModel updatedAttendance) {
         return teacherAttendanceRepository.findById(attendanceId)
                 .map(attendance -> {
                     attendance.setDate(updatedAttendance.getDate());

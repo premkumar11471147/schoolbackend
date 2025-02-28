@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class StudentProfile {
+public class StudentProfileModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)  // Generates unique ID
@@ -31,7 +31,7 @@ public class StudentProfile {
 
     @ManyToOne
     @JoinColumn(name = "class_id", nullable = false)
-    private ClassEntity classEntity;
+    private ClassModel classEntity;
 
     @Column(name = "roll_number", nullable = false)
     private String rollNumber;
@@ -42,9 +42,9 @@ public class StudentProfile {
     // Bi-directional One-to-One mapping
     @OneToOne(mappedBy = "studentProfile", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    private StudentPersonalProfile studentPersonalProfile;
+    private StudentPersonalProfileModel studentPersonalProfile;
 
-    public void setStudentPersonalProfile(StudentPersonalProfile studentPersonalProfile) {
+    public void setStudentPersonalProfile(StudentPersonalProfileModel studentPersonalProfile) {
         this.studentPersonalProfile = studentPersonalProfile;
         studentPersonalProfile.setStudentProfile(this);  // Ensures relationship consistency
     }
