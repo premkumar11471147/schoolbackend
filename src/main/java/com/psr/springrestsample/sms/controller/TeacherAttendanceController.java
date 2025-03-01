@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/attendance")
+@RequestMapping("/api/attendance/teacher")
 public class TeacherAttendanceController {
 
     private final TeacherAttendanceService teacherAttendanceService;

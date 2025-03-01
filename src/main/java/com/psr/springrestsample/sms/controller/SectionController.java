@@ -15,7 +15,7 @@ import com.psr.springrestsample.sms.service.SectionService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/sections/")
+@RequestMapping("/api/sections/")
 public class SectionController {
 
     private SectionService sectionService;
