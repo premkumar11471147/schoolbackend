@@ -17,6 +17,9 @@ public class SectionModel {
 
 	public SectionModel(){}
 
+	public SectionModel(int i, String a) {
+	}
+
 	public void setSecId(long sec_id){
 		this.sec_id = sec_id;
 	}
