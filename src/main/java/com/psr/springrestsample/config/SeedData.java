@@ -1,16 +1,14 @@
 package com.psr.springrestsample.config;
 
-import com.psr.springrestsample.sms.model.*;
-import com.psr.springrestsample.sms.repository.*;
-import com.psr.springrestsample.sms.service.ClassService;
-import com.psr.springrestsample.sms.service.StudentProfileService;
-import com.psr.springrestsample.sms.service.TeacherProfileService;
+import com.psr.springrestsample.model.*;
+import com.psr.springrestsample.repository.*;
+import com.psr.springrestsample.service.ClassService;
+import com.psr.springrestsample.service.StudentProfileService;
+import com.psr.springrestsample.service.TeacherProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import com.psr.springrestsample.model.Account;
-import com.psr.springrestsample.service.AccountService;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -23,8 +21,6 @@ import java.util.Optional;
 public class SeedData  implements CommandLineRunner {
 
 
-    @Autowired
-    private AccountService accountService;
     @Autowired
     private NotificationRepository notificationRepository;
     @Autowired
@@ -48,8 +44,6 @@ public class SeedData  implements CommandLineRunner {
     @Autowired
     private StudentProfileService studentProfileService;
     @Autowired
-    private SectionRepository sectionRepository;
-    @Autowired
     private ClassService classService;
     @Autowired
     private StudentAttendanceRepository studentAttendanceRepository;
@@ -66,20 +60,20 @@ public class SeedData  implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Account account1 = new Account();
-        Account account2 = new Account();
-
-
-        account1.setEmail("user@user.com");
-        account1.setPassword("pass987");
-        account1.setRole("ROLE_USER");
-        accountService.save(account1);
-
-
-        account2.setEmail("admin@admin.com");
-        account2.setPassword("pass987");
-        account2.setRole("ROLE_ADMIN");
-        accountService.save(account2);
+//        Account account1 = new Account();
+//        Account account2 = new Account();
+//
+//
+//        account1.setEmail("user@user.com");
+//        account1.setPassword("pass987");
+//        account1.setRole("ROLE_USER");
+//        accountService.save(account1);
+//
+//
+//        account2.setEmail("admin@admin.com");
+//        account2.setPassword("pass987");
+//        account2.setRole("ROLE_ADMIN");
+//        accountService.save(account2);
 
 
         Date utilDate = new Date(); // Current date and time
@@ -373,19 +367,19 @@ public class SeedData  implements CommandLineRunner {
                 System.out.println("❌ No students or exams found. Report card seeding failed.");
             }
 
-
-            List<SectionModel> sections = Arrays.asList(
-                    new SectionModel(0, "A"),
-                    new SectionModel(0, "B"),
-                    new SectionModel(0, "C"),
-                    new SectionModel(0, "D"),
-                    new SectionModel(0, "E")
-            );
-
-// Saving the section records into the database
-            sectionRepository.saveAll(sections);
-
-            System.out.println("✅ Successfully seeded section details into the database!");
+//
+//            List<SectionModel> sections = Arrays.asList(
+//                    new SectionModel(0, "A"),
+//                    new SectionModel(0, "B"),
+//                    new SectionModel(0, "C"),
+//                    new SectionModel(0, "D"),
+//                    new SectionModel(0, "E")
+//            );
+//
+//// Saving the section records into the database
+//            sectionRepository.saveAll(sections);
+//
+//            System.out.println("✅ Successfully seeded section details into the database!");
 
 
             Optional<TeacherProfileModel> teacherOptional = teacherProfileRepository.findById(1L);
